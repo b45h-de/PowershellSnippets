@@ -1,0 +1,2 @@
+﻿$filterDate = [datetime]::ParseExact('09.12.2022 11:20', 'dd.MM.yyyy HH:mm', $null) 
+Get-ADUser -filter 'enabled -eq $true'  -properties PwdLastSet  | sort PwdLastSet |Where-Object {$_.PwdLastSet -le $filterDate.TofileTime() -and ($_.DistinguishedName -like "*OU=Halle*" -or $_.DistinguishedName -like "*OU=MyOU2*")} | ft Name,@{Name='PwdLastSet';Expression={[DateTime]::FromFileTime($_.PwdLastSet)}}
