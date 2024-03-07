@@ -16,3 +16,11 @@ Install-ADServiceAccount -Identity MSA_Server1
 
 #You can then use the following command to install the Active Directory Module for Windows PowerShell and ADAC features:
 #Add-WindowsFeature RSAT-AD-PowerShell,RSAT-AD-AdminCenter
+
+
+#If you changed servers and want to migrate a managed service account to your new server
+#you have to changed the Principal(s) allowd to retrieve the Managed Passwort via
+Set-ADServiceAccount -Identity msaaccountname$ -PrincipalsAllowedToRetrieveManagedPassword "CN=NewServer,OU=Server,DC=your,DC=domain"
+
+#Afterwards add the account on NewServer via 
+Install-ADServiceAccount -Identity msaaccountname$
