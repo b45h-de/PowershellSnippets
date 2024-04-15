@@ -24,3 +24,6 @@ Set-ADServiceAccount -Identity msaaccountname$ -PrincipalsAllowedToRetrieveManag
 
 #Afterwards add the account on NewServer via 
 Install-ADServiceAccount -Identity msaaccountname$
+
+#Delete User from Server if you want to migrate the user to a new Server
+Uninstall-ADServiceAccount msaaccountname$
