@@ -1,0 +1,12 @@
+For security reasons it might make sense to prevent execution of powershell scripts that aren't signed.
+Therefore a group policy could be created:
+Computerconfiguration --> Administrative Templates --> Windows-Components --> Windows PowerShell --> Activate script execution --> 
+activate and select "allow only signed scripts" or "local skripts and remote signed scripts allowed"
+It's also possible to use the option "allow only signed scripts" and create a separate group policy that activates "local skripts and remote signed scripts allowed"
+and is assigned to special servers.
+If you're strict and use this option you have to make exceptions and assign the policy that allows "local skript and remote signed scripts" to some
+Servers. For example Servers that use the Azure AD / Entra ID Sync Tool or for Exchangeservers.
+
+If your're strict without the exception for exchange servers you might run into problems when you want to start the ExchangeShell.
+When the Shell tries to connect to the Exchangeserver it might end up in a timeout.
+If so, the reason is probably the exection policy for powershell skripts.
