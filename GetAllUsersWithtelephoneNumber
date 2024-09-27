@@ -1,0 +1,2 @@
+#get all users that have a non empty telephonenumber in their ad object
+get-aduser -Filter {(telephoneNumber -like "*") } -Properties telephonenumber|select telephonenumber,name |export-csv -Path "\\\Server\phonenumbers.csv"
