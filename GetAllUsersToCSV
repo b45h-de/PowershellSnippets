@@ -1,0 +1,16 @@
+#get all users ( users with a username that has a length of 3 as per our definition )
+#read Name, surname, username and email and export csv
+
+$results = @()
+$users=Get-Aduser -Properties * -Filter 'enabled -eq $true'|where-object {$_.samAccountName.Length -eq 3}
+
+foreach($user in $users){
+        $details = @{            
+                Name             = $user.GivenName            
+                Surname     = $user.sn                 
+                user      = $user.SamAccountName.ToLower() 
+                Email        = $user.EmailAddress
+        }
+        $results += New-Object PSObject -Property $details             
+}
+$results | export-csv -Path c:\temp\Mailaddresses.csv -NoTypeInformation -Encoding UTF8 -Delimiter ';'
