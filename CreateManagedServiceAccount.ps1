@@ -15,7 +15,7 @@ Install-ADServiceAccount -Identity MSA_Server1
 #Get-WindowsFeature
 
 #You can then use the following command to install the Active Directory Module for Windows PowerShell and ADAC features:
-#Add-WindowsFeature RSAT-AD-PowerShell,RSAT-AD-AdminCenter
+#Add-WindowsFeature RSAT-AD-PowerShell
 #On a Windows Client OS use:
 #Get-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online|Add-WindowsCapability -Online
 
