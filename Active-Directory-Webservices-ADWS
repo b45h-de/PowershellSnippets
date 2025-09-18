@@ -1,0 +1,5 @@
+The CMDlets for RSAT Powershell are using the Active Directory Webservices (ADWS).
+Those use TCP Port 9389.
+If there's a Firewall between a Computer that for example wants to use (g)msa or the
+rsat cmdlets in general and the ADWS Server it might be neccessary to apply rules on
+it so the computer can access adws.
