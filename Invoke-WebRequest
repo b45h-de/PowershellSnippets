@@ -1,0 +1,21 @@
+Invoke-WebRequest leads to eventid 4100 with message:
+
+Fehlermeldung = Der Antwortinhalt kann nicht analysiert werden, da das Internet Explorer-Modul nicht verfügbar ist, oder die Konfiguration beim ersten Start von Internet Explorer ist nicht abgeschlossen. Geben Sie den UseBasicParsing-Parameter an, und wiederholen Sie den Vorgang. 
+Vollqualifizierte Fehler-ID = WebCmdletIEDomNotSupportedException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+and message
+
+Fehlermeldung = Der Remoteserver hat einen Fehler zurückgegeben: (500) Interner Serverfehler.
+Vollqualifizierte Fehler-ID = WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+
+In my case these Invoke-WebRequest calls where made in a Powershellskript that was run via planned Tasks.
+The scripts/Tasks completed "successfully" without doing anything and leading to the above events.
+
+The Problem is as the first message suggests the UseBasicParsing Parameter on a IE-less System.
+
+See also:
+https://stackoverflow.com/questions/38005341/the-response-content-cannot-be-parsed-because-the-internet-explorer-engine-is-no
+and
+https://learn.microsoft.com/en-us/previous-versions/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest?view=powershell-3.0
+
+Add -UseBasicParsing as a Parameter to your Invoke-WebRequest and everything works again.
