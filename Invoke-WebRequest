@@ -18,4 +18,10 @@ https://stackoverflow.com/questions/38005341/the-response-content-cannot-be-pars
 and
 https://learn.microsoft.com/en-us/previous-versions/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest?view=powershell-3.0
 
+"
+-UseBasicParsing
+Indicates that the cmdlet uses the response object for HTML content without Document Object Model (DOM) parsing. 
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+"
+
 Add -UseBasicParsing as a Parameter to your Invoke-WebRequest and everything works again.
