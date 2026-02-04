@@ -1,0 +1,18 @@
+#Thanks to ebaker
+#https://community.spiceworks.com/t/changing-owner-on-ad-objects-via-powershell-or-dsacls/444561
+
+$AllComputers = Get-ADComputer -Filter * # feel free to use the filter, Searchbase, searchscope, ... you need
+
+$Output = [System.Collections.Generic.List[PSObject]]::new() 
+# using a generic list is more efficient with big collections of objects ( vs array)
+
+foreach ($Computer in $AllComputers)
+    {
+        $comp = Get-ADComputer $Computer
+        $comppath = "AD:$($comp.DistinguishedName.ToString())"
+        $acl = Get-Acl -Path $comppath
+        $objUser = New-Object System.Security.Principal.NTAccount("DOMAIN", "Account")
+        $acl.SetOwner($objUser)
+        Set-Acl -Path $comppath -AclObject $acl
+    }
+$Output
