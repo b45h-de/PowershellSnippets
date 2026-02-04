@@ -1,0 +1,1 @@
+get-aduser -filter 'enabled -eq $true'  -properties PwdLastSet |sort-object -Property PwdLastSet |ft Name,@{Name='PwdLastSet';Expression={[DateTime]::FromFileTime($_.PwdLastSet)}}
