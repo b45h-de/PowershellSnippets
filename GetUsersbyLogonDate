@@ -1,0 +1,1 @@
+Get-ADUser -Filter * -Properties * | Sort LastLogonDate | Select Name, LastLogonDate,@{Name='LastLogon';Expression={[DateTime]::FromFileTime($_.LastLogon)}}
