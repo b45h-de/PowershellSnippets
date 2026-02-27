@@ -1,0 +1,6 @@
+#Resets Faxattribute in AD-Userobject where the Attribute has a value
+$users=Get-ADUser -Properties userprincipalname,fax -Filter {fax -like "*"}
+
+foreach($user in $users){
+    Set-ADUser -Identity $user -Fax $null
+}
